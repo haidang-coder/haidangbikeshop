@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Đặt Hàng</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    min-height:100vh;
+    padding:40px;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+/* HEADER */
+
+.top{
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+    padding:30px;
+    border-radius:25px;
+    color:white;
+    margin-bottom:35px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.top h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.top p{
+    opacity:0.9;
+}
+
+/* PRODUCT BOX */
+
+.product-box{
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* IMAGE */
+
+.image-box{
+    background:#f8fafc;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.image-box img{
+    width:100%;
+    max-width:500px;
+    border-radius:20px;
+    transition:0.4s;
+}
+
+.image-box img:hover{
+    transform:scale(1.05);
+}
+
+/* INFO */
+
+.info{
+    padding:45px;
+}
+
+.badge{
+    display:inline-block;
+    background:#dcfce7;
+    color:#166534;
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.info h2{
+    font-size:36px;
+    margin-bottom:20px;
+    color:#111827;
+}
+
+.desc{
+    color:#666;
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+.price{
+    font-size:42px;
+    font-weight:700;
+    color:#16a34a;
+    margin-bottom:30px;
+}
+
+/* FORM */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:500;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    font-size:16px;
+    transition:0.3s;
+}
+
+input:focus{
+    outline:none;
+    border-color:#22c55e;
+    box-shadow:0 0 10px rgba(34,197,94,0.2);
+}
+
+/* BUTTON */
+
+button{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+    color:white;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:10px;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(34,197,94,0.3);
+}
+
+/* SUCCESS */
+
+.success{
+    margin-top:20px;
+    background:#dcfce7;
+    color:#166534;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+    display:none;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .product-box{
+        grid-template-columns:1fr;
+    }
+
+    body{
+        padding:20px;
+    }
+
+    .info{
+        padding:30px;
+    }
+
+    .info h2{
+        font-size:28px;
+    }
+
+    .price{
+        font-size:32px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- TOP -->
+
+    <div class="top">
+
+        <h1>🚴 Xác Nhận Đặt Hàng</h1>
+
+        <p>
+            Điền thông tin để hoàn tất đơn hàng
+        </p>
+
+    </div>
+
+    <!-- PRODUCT -->
+
+    <div class="product-box">
+
+        <!-- IMAGE -->
+
+        <div class="image-box">
+
+            <img src="images/anh1.jpg.avif">
+
+        </div>
+
+        <!-- INFO -->
+
+        <div class="info">
+
+            <div class="badge">
+                Sản phẩm nổi bật
+            </div>
+
+            <h2 id="GIANT Talon MTB"></h2>
+
+            <p class="desc">
+
+                Xe đạp cao cấp với thiết kế hiện đại,
+                khung siêu nhẹ, phù hợp đi phố,
+                thể thao và đường dài.
+
+            </p>
+
+            <div class="price" id="5.000.000đ"></div>
+
+            <!-- FORM -->
+
+            <div class="form-group">
+
+                <label>Họ và tên</label>
+
+                <input type="text"
+                id="ten"
+                placeholder="Nhập họ tên">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Số điện thoại</label>
+
+                <input type="text"
+                placeholder="Nhập số điện thoại">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Địa chỉ</label>
+
+                <input type="text"
+                placeholder="Nhập địa chỉ">
+
+            </div>
+
+            <button onclick="datHang()">
+                Xác nhận đặt hàng
+            </button>
+
+            <div class="success" id="success">
+                ✔ Đặt hàng thành công
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* HIỂN THỊ SẢN PHẨM */
+
+document.getElementById("GIANT Talon MTB").innerHTML =
+localStorage.getItem("GIANT Talon MTB");
+
+document.getElementById("5.000.000đ").innerHTML =
+localStorage.getItem("5.000.000đ");
+
+document.getElementById("anh1").src =
+localStorage.getItem("anh1");
+
+/* ĐẶT HÀNG */
+
+function datHang(){
+
+    let ten =
+    document.getElementById("ten").value;
+
+    if(ten==""){
+
+        alert("Vui lòng nhập họ tên");
+
+        return;
+    }
+
+    localStorage.setItem(
+        "khachhang",
+        ten
+    );
+
+    document.getElementById("success")
+    .style.display = "block";
+
+    setTimeout(function(){
+
+        window.location.href =
+        "admin.html";
+
+    },1500);
+
+}
+
+</script>
+
+</body>
+</html>

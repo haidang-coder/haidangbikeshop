@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin - Quản Lý Đơn Hàng</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    min-height:100vh;
+    padding:40px;
+}
+
+/* HEADER */
+
+.header{
+    width:100%;
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+    padding:25px 40px;
+    border-radius:20px;
+    color:white;
+    margin-bottom:40px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.header h1{
+    font-size:32px;
+}
+
+.header p{
+    margin-top:8px;
+    opacity:0.9;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-bottom:40px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h2{
+    font-size:18px;
+    color:#666;
+    margin-bottom:10px;
+}
+
+.card .number{
+    font-size:35px;
+    font-weight:700;
+    color:#16a34a;
+}
+
+/* TABLE */
+
+.table-box{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.table-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.table-header h2{
+    font-size:28px;
+}
+
+.search{
+    padding:12px 18px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    width:280px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+}
+
+thead{
+    background:#16a34a;
+    color:white;
+}
+
+th{
+    padding:18px;
+    text-align:left;
+    font-size:16px;
+}
+
+td{
+    padding:18px;
+    border-bottom:1px solid #eee;
+    font-size:15px;
+}
+
+tr:hover{
+    background:#f8fafc;
+}
+
+/* STATUS */
+
+.status{
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+    display:inline-block;
+}
+
+.processing{
+    background:#fef9c3;
+    color:#854d0e;
+}
+
+.success{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.cancel{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* BUTTON */
+
+.btn{
+    border:none;
+    padding:10px 16px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+    margin:3px;
+}
+
+.btn-view{
+    background:#3b82f6;
+    color:white;
+}
+
+.btn-delete{
+    background:#ef4444;
+    color:white;
+}
+
+.btn-confirm{
+    background:#16a34a;
+    color:white;
+}
+
+.btn-cancel{
+    background:#f59e0b;
+    color:white;
+}
+
+.btn:hover{
+    opacity:0.8;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    body{
+        padding:20px;
+    }
+
+    .table-box{
+        overflow-x:auto;
+    }
+
+    .table-header{
+        flex-direction:column;
+        gap:15px;
+        align-items:flex-start;
+    }
+
+    .search{
+        width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>🚴 Admin Dashboard</h1>
+
+    <p>Quản lý đơn hàng HAIDANGBIKESHOP</p>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div class="dashboard">
+
+    <div class="card">
+        <h2>Tổng đơn hàng</h2>
+        <div class="number">1</div>
+    </div>
+
+    <div class="card">
+        <h2>Đang xử lý</h2>
+        <div class="number">1</div>
+    </div>
+
+    <div class="card">
+        <h2>Khách hàng</h2>
+        <div class="number">1</div>
+    </div>
+
+</div>
+
+<!-- TABLE -->
+
+<div class="table-box">
+
+    <div class="table-header">
+
+        <h2>Danh Sách Đơn Hàng</h2>
+
+        <input type="text"
+        class="search"
+        placeholder="Tìm kiếm khách hàng...">
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Khách Hàng</th>
+                <th>Sản Phẩm</th>
+                <th>Trạng Thái</th>
+                <th>Hành Động</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr id="donhang">
+
+                <td id="tenkh"></td>
+
+                <td id="tensp"></td>
+
+                <td>
+                    <span class="status processing" id="trangthai">
+                        Đang xử lý
+                    </span>
+                </td>
+
+                <td>
+
+                    <button class="btn btn-confirm"
+                    onclick="xacNhanDon()">
+                        Xác nhận
+                    </button>
+
+                    <button class="btn btn-cancel"
+                    onclick="huyDon()">
+                        Hủy
+                    </button>
+
+                    <button class="btn btn-delete"
+                    onclick="xoaDon()">
+                        Xóa
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script>
+
+let ten = localStorage.getItem("khachhang");
+
+let sanpham = localStorage.getItem("sanpham");
+
+document.getElementById("tenkh").innerHTML =
+ten || "Nguyễn Văn A";
+
+document.getElementById("tensp").innerHTML =
+sanpham || "Xe Đạp GIANT Talon";
+
+function xacNhanDon(){
+
+    let tt = document.getElementById("trangthai");
+
+    tt.innerHTML = "Đã xác nhận";
+
+    tt.classList.remove("processing");
+    tt.classList.remove("cancel");
+
+    tt.classList.add("success");
+
+}
+
+function huyDon(){
+
+    let tt = document.getElementById("trangthai");
+
+    tt.innerHTML = "Đã hủy";
+
+    tt.classList.remove("processing");
+    tt.classList.remove("success");
+
+    tt.classList.add("cancel");
+
+}
+
+function xoaDon(){
+
+    document.getElementById("donhang").remove();
+
+}
+
+</script>
+
+</body>
+</html>
