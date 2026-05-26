@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HAIDANGBIKESHOP</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#f5f7fb;
+  color:#222;
+}
+
+/* HEADER */
+
+header{
+  width:100%;
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#111827;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  color:white;
+  font-size:28px;
+  font-weight:700;
+}
+
+nav{
+  display:flex;
+  gap:30px;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+}
+
+nav a:hover{
+  color:#22c55e;
+}
+
+.auth{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.auth button{
+  padding:10px 18px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.green{
+  background:#22c55e;
+  color:white;
+}
+
+.logout-btn{
+  background:red;
+  color:white;
+  display:none;
+}
+
+.user-name{
+  color:white;
+  font-weight:600;
+  display:none;
+}
+
+/* HERO */
+
+.hero{
+  height:90vh;
+  background:url('images/anh7.jpg.jfif') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+}
+
+.overlay{
+  position:relative;
+  color:white;
+  text-align:center;
+}
+
+.overlay h1{
+  font-size:55px;
+  margin-bottom:20px;
+}
+
+.overlay p{
+  font-size:20px;
+}
+
+/* PRODUCTS */
+
+.container{
+  padding:70px 8%;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:40px;
+}
+
+.topbar h2{
+  font-size:35px;
+}
+
+.topbar input{
+  width:300px;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.product{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.product:hover{
+  transform:translateY(-10px);
+}
+
+.product img{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+}
+
+.product-content{
+  padding:20px;
+}
+
+.product h2{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.price{
+  color:#22c55e;
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:15px;
+}
+
+.button-group{
+  display:flex;
+  gap:10px;
+}
+
+.button-group button{
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.cart-btn{
+  background:#111827;
+}
+
+.buy-btn{
+  background:#22c55e;
+}
+
+/* GALLERY */
+
+.gallery{
+  padding:70px 8%;
+  background:white;
+}
+
+.gallery h2{
+  text-align:center;
+  margin-bottom:40px;
+  font-size:35px;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.gallery-grid img{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+  border-radius:15px;
+}
+
+/* FOOTER */
+
+footer{
+  background:#111827;
+  color:white;
+  padding:60px 8%;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+}
+
+.footer-box h3{
+  margin-bottom:20px;
+}
+
+.footer-box p{
+  margin-bottom:10px;
+}
+
+/* GIỎ HÀNG */
+
+.cart-box{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#22c55e;
+  color:white;
+  padding:15px 20px;
+  border-radius:50px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.cart-modal,
+.login-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.cart-content,
+.login-content{
+  background:white;
+  width:500px;
+  padding:30px;
+  border-radius:20px;
+  position:relative;
+  max-height:80vh;
+  overflow:auto;
+}
+
+.close{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:30px;
+  cursor:pointer;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 0;
+  border-bottom:1px solid #eee;
+}
+
+.cart-item button{
+  background:red;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.buy-all{
+  width:100%;
+  margin-top:20px;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#22c55e;
+  color:white;
+  font-size:17px;
+  cursor:pointer;
+}
+
+/* LOGIN REGISTER */
+
+.tab-box{
+  display:flex;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.tab-box button{
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  background:#e5e7eb;
+}
+
+.active-tab{
+  background:#22c55e !important;
+  color:white;
+}
+
+.login-content h2{
+  margin-bottom:20px;
+  text-align:center;
+}
+
+.login-content input{
+  width:100%;
+  padding:14px;
+  margin-bottom:15px;
+  border:1px solid #ccc;
+  border-radius:10px;
+}
+
+.login-btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#22c55e;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">HAIDANGBIKESHOP</div>
+
+<nav>
+<a href="#">Trang chủ</a>
+<a href="#products">Sản phẩm</a>
+<a href="#gallery">Gallery</a>
+<a href="#footer">Liên hệ</a>
+</nav>
+
+<div class="auth">
+
+<span class="user-name" id="userName"></span>
+
+<button id="loginButton"
+onclick="moDangNhap()">
+
+Đăng nhập
+
+</button>
+
+<button class="green"
+onclick="moDangNhap()"
+id="registerButton">
+
+Đăng ký
+
+</button>
+
+<button class="logout-btn"
+id="logoutButton"
+onclick="dangXuat()">
+
+Đăng xuất
+
+</button>
+
+</div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="overlay">
+
+<h1>WEBSITE XE ĐẠP CAO CẤP</h1>
+
+<p>Thiết kế hiện đại • Giỏ hàng • Responsive</p>
+
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="container" id="products">
+
+<div class="topbar">
+
+<h2>Sản phẩm nổi bật</h2>
+
+<input type="text"
+placeholder="Tìm kiếm xe đạp...">
+
+</div>
+
+<div class="grid">
+
+<!-- PRODUCT 1 -->
+
+<div class="product">
+
+<img src="images/anh1.jpg.avif">
+
+<div class="product-content">
+
+<h2>GIANT Talon MTB</h2>
+
+<div class="price">5.000.000đ</div>
+
+<div class="button-group">
+
+<button class="cart-btn"
+onclick="themGioHang('GIANT Talon MTB',5000000)">
+
+Thêm giỏ
+
+</button>
+
+<button class="buy-btn"
+onclick="window.location.href='dathang.html'">
+
+Đặt hàng
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PRODUCT 2 -->
+
+<div class="product">
+
+<img src="images/anh2.jpg.jpg">
+
+<div class="product-content">
+
+<h2>Magicbros Shadow</h2>
+
+<div class="price">14.900.000đ</div>
+
+<div class="button-group">
+
+<button class="cart-btn"
+onclick="themGioHang('Magicbros Shadow',14900000)">
+
+Thêm giỏ
+
+</button>
+
+<button class="buy-btn"
+onclick="window.location.href='dathang.html'">
+
+Đặt hàng
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PRODUCT 3 -->
+
+<div class="product">
+
+<img src="images/anh3.jpg.jpg">
+
+<div class="product-content">
+
+<h2>Road Makelen R500</h2>
+
+<div class="price">12.500.000đ</div>
+
+<div class="button-group">
+
+<button class="cart-btn"
+onclick="themGioHang('Road Makelen R500',12500000)">
+
+Thêm giỏ
+
+</button>
+
+<button class="buy-btn"
+onclick="window.location.href='dathang.html'">
+
+Đặt hàng
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="grid">
+
+<!-- PRODUCT 1 -->
+<div class="product">
+  <img src="images/anh1.jpg.avif">
+  <div class="product-content">
+    <h2>GIANT Talon MTB</h2>
+    <div class="price">5.000.000đ</div>
+    <div class="button-group">
+      <button class="cart-btn" onclick="themGioHang('GIANT Talon MTB',5000000)">Thêm giỏ</button>
+      <button class="buy-btn" onclick="window.location.href='dathang.html'">Đặt hàng</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT 2 -->
+<div class="product">
+  <img src="images/anh2.jpg.jpg">
+  <div class="product-content">
+    <h2>Magicbros Shadow</h2>
+    <div class="price">14.900.000đ</div>
+    <div class="button-group">
+      <button class="cart-btn" onclick="themGioHang('Magicbros Shadow',14900000)">Thêm giỏ</button>
+      <button class="buy-btn" onclick="window.location.href='dathang.html'">Đặt hàng</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT 3 -->
+<div class="product">
+  <img src="images/anh3.jpg.jpg">
+  <div class="product-content">
+    <h2>Road Makelen R500</h2>
+    <div class="price">12.500.000đ</div>
+    <div class="button-group">
+      <button class="cart-btn" onclick="themGioHang('Road Makelen R500',12500000)">Thêm giỏ</button>
+      <button class="buy-btn" onclick="window.location.href='dathang.html'">Đặt hàng</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT 4  -->
+<div class="product">
+  <img src="images/anh11.jpg">
+  <div class="product-content">
+    <h2>Twitter Gravel X</h2>
+    <div class="price">9.800.000đ</div>
+    <div class="button-group">
+      <button class="cart-btn" onclick="themGioHang('Twitter Gravel X',9800000)">Thêm giỏ</button>
+      <button class="buy-btn" onclick="window.location.href='dathang.html'">Đặt hàng</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT 5  -->
+<div class="product">
+  <img src="images/anh13.jpg">
+  <div class="product-content">
+    <h2>TRINX TX18 Pro</h2>
+    <div class="price">6.300.000đ</div>
+    <div class="button-group">
+      <button class="cart-btn" onclick="themGioHang('TRINX TX18 Pro',6300000)">Thêm giỏ</button>
+      <button class="buy-btn" onclick="window.location.href='dathang.html'">Đặt hàng</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT -->
+<div class="product">
+  <img src="images/anh14.jpg">
+  <div class="product-content">
+    <h2>Galaxy ML200</h2>
+    <div class="price">4.200.000đ</div>
+    <div class="button-group">
+      <button class="cart-btn" onclick="themGioHang('Galaxy ML200',4200000)">Thêm giỏ</button>
+      <button class="buy-btn" onclick="window.location.href='dathang.html'">Đặt hàng</button>
+    </div>
+  </div>
+</div>
+
+</div>
+<!-- GALLERY -->
+
+<section class="gallery" id="gallery">
+
+<h2>Thư viện ảnh</h2>
+
+<div class="gallery-grid">
+
+<img src="images/anh8.jpg">
+<img src="images/anh9.jpg">
+<img src="images/anh10.jpg">
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer id="footer">
+
+<div class="footer-grid">
+
+<div class="footer-box">
+
+<h3>Thông tin liên hệ</h3>
+
+<p>📍 123 Nguyễn Văn A, TP.HCM</p>
+<p>📞 0988 888 888</p>
+<p>📧 haidangbikeshop@gmail.com</p>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Giờ mở cửa</h3>
+
+<p>Thứ 2 - Thứ 7: 8h - 21h</p>
+<p>Chủ nhật: 8h - 18h</p>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Mạng xã hội</h3>
+
+<p>🌐 Facebook: HAIDANGBIKESHOP</p>
+<p>📸 Instagram: @haidangbike</p>
+<p>🎥 TikTok: @haidangbikeshop</p>
+
+</div>
+
+</div>
+
+</footer>
+
+<!-- GIỎ HÀNG -->
+
+<div class="cart-box"
+onclick="moGioHang()">
+
+🛒 Giỏ hàng:
+<span id="soluong">0</span>
+
+</div>
+
+<!-- MODAL GIỎ HÀNG -->
+
+<div class="cart-modal"
+id="cartModal">
+
+<div class="cart-content">
+
+<span class="close"
+onclick="dongGioHang()">
+
+&times;
+
+</span>
+
+<h2>Giỏ hàng của bạn</h2>
+
+<div id="cartItems"></div>
+
+<h3 id="tongTien">
+
+Tổng: 0đ
+
+</h3>
+
+<button class="buy-all">
+
+Thanh toán
+
+</button>
+
+</div>
+
+</div>
+
+<!-- LOGIN REGISTER -->
+
+<div class="login-modal"
+id="loginModal">
+
+<div class="login-content">
+
+<span class="close"
+onclick="dongDangNhap()">
+
+&times;
+
+</span>
+
+<div class="tab-box">
+
+<button id="loginTab"
+class="active-tab"
+onclick="hienDangNhap()">
+
+Đăng nhập
+
+</button>
+
+<button id="registerTab"
+onclick="hienDangKy()">
+
+Đăng ký
+
+</button>
+
+</div>
+
+<!-- LOGIN -->
+
+<div id="formDangNhap">
+
+<h2>Đăng nhập</h2>
+
+<input type="email"
+id="loginEmail"
+placeholder="Nhập Gmail">
+
+<input type="password"
+id="loginPassword"
+placeholder="Nhập mật khẩu">
+
+<button class="login-btn"
+onclick="dangNhap()">
+
+Đăng nhập
+
+</button>
+
+</div>
+
+<!-- REGISTER -->
+
+<div id="formDangKy"
+style="display:none">
+
+<h2>Đăng ký tài khoản</h2>
+
+<input type="text"
+id="registerName"
+placeholder="Họ và tên">
+
+<input type="email"
+id="registerEmail"
+placeholder="Nhập Gmail">
+
+<input type="password"
+id="registerPassword"
+placeholder="Tạo mật khẩu">
+
+<input type="password"
+id="registerPassword2"
+placeholder="Xác nhận mật khẩu">
+
+<button class="login-btn"
+onclick="dangKy()">
+
+Đăng ký
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let gioHang = [];
+
+/* GIỎ HÀNG */
+
+function themGioHang(ten,gia){
+
+    gioHang.push({
+        ten:ten,
+        gia:gia
+    });
+
+    document.getElementById("soluong")
+    .innerHTML = gioHang.length;
+
+    capNhatGioHang();
+
+    alert("Đã thêm vào giỏ hàng");
+}
+
+function capNhatGioHang(){
+
+    let cartItems =
+    document.getElementById("cartItems");
+
+    let tongTien =
+    document.getElementById("tongTien");
+
+    cartItems.innerHTML = "";
+
+    let tong = 0;
+
+    gioHang.forEach(function(sp,index){
+
+        tong += sp.gia;
+
+        cartItems.innerHTML += `
+
+        <div class="cart-item">
+
+            <div>
+
+                <h3>${sp.ten}</h3>
+
+                <p>${sp.gia.toLocaleString()}đ</p>
+
+            </div>
+
+            <button onclick="xoaSanPham(${index})">
+
+            Xóa
+
+            </button>
+
+        </div>
+
+        `;
+    });
+
+    tongTien.innerHTML =
+    "Tổng: " + tong.toLocaleString() + "đ";
+}
+
+function xoaSanPham(index){
+
+    gioHang.splice(index,1);
+
+    document.getElementById("soluong")
+    .innerHTML = gioHang.length;
+
+    capNhatGioHang();
+}
+
+function moGioHang(){
+
+    document.getElementById("cartModal")
+    .style.display = "flex";
+}
+
+function dongGioHang(){
+
+    document.getElementById("cartModal")
+    .style.display = "none";
+}
+
+/* LOGIN */
+
+function moDangNhap(){
+
+    document.getElementById("loginModal")
+    .style.display = "flex";
+}
+
+function dongDangNhap(){
+
+    document.getElementById("loginModal")
+    .style.display = "none";
+}
+
+function hienDangNhap(){
+
+    document.getElementById("formDangNhap")
+    .style.display = "block";
+
+    document.getElementById("formDangKy")
+    .style.display = "none";
+
+    document.getElementById("loginTab")
+    .classList.add("active-tab");
+
+    document.getElementById("registerTab")
+    .classList.remove("active-tab");
+}
+
+function hienDangKy(){
+
+    document.getElementById("formDangNhap")
+    .style.display = "none";
+
+    document.getElementById("formDangKy")
+    .style.display = "block";
+
+    document.getElementById("registerTab")
+    .classList.add("active-tab");
+
+    document.getElementById("loginTab")
+    .classList.remove("active-tab");
+}
+
+/* ĐĂNG KÝ */
+
+function dangKy(){
+
+    let ten =
+    document.getElementById("registerName").value;
+
+    let email =
+    document.getElementById("registerEmail").value;
+
+    let mk =
+    document.getElementById("registerPassword").value;
+
+    let mk2 =
+    document.getElementById("registerPassword2").value;
+
+    if(ten == "" || email == "" || mk == "" || mk2 == ""){
+
+        alert("Vui lòng nhập đầy đủ thông tin");
+
+        return;
+    }
+
+    if(mk != mk2){
+
+        alert("Mật khẩu xác nhận không khớp");
+
+        return;
+    }
+
+    localStorage.setItem("tenNguoiDung",ten);
+    localStorage.setItem("gmailNguoiDung",email);
+    localStorage.setItem("matKhauNguoiDung",mk);
+
+    alert("Đăng ký thành công");
+
+    hienDangNhap();
+}
+
+/* ĐĂNG NHẬP */
+
+function dangNhap(){
+
+    let email =
+    document.getElementById("loginEmail").value;
+
+    let mk =
+    document.getElementById("loginPassword").value;
+
+    let emailDaLuu =
+    localStorage.getItem("gmailNguoiDung");
+
+    let mkDaLuu =
+    localStorage.getItem("matKhauNguoiDung");
+
+    if(email == emailDaLuu && mk == mkDaLuu){
+
+        hienThiNguoiDung();
+
+        dongDangNhap();
+
+        alert("Đăng nhập thành công");
+    }
+    else{
+
+        alert("Sai Gmail hoặc mật khẩu");
+    }
+}
+
+/* HIỂN THỊ USER */
+
+function hienThiNguoiDung(){
+
+    let ten =
+    localStorage.getItem("tenNguoiDung");
+
+    if(ten){
+
+        document.getElementById("userName")
+        .style.display = "inline";
+
+        document.getElementById("userName")
+        .innerHTML = "Xin chào, " + ten;
+
+        document.getElementById("loginButton")
+        .style.display = "none";
+
+        document.getElementById("registerButton")
+        .style.display = "none";
+
+        document.getElementById("logoutButton")
+        .style.display = "inline-block";
+    }
+}
+
+/* ĐĂNG XUẤT */
+
+function dangXuat(){
+
+    document.getElementById("userName")
+    .style.display = "none";
+
+    document.getElementById("loginButton")
+    .style.display = "inline-block";
+
+    document.getElementById("registerButton")
+    .style.display = "inline-block";
+
+    document.getElementById("logoutButton")
+    .style.display = "none";
+
+    alert("Đã đăng xuất");
+}
+
+/* CLICK NGOÀI MODAL */
+
+window.onclick = function(e){
+
+    let cartModal =
+    document.getElementById("cartModal");
+
+    let loginModal =
+    document.getElementById("loginModal");
+
+    if(e.target == cartModal){
+
+        dongGioHang();
+    }
+
+    if(e.target == loginModal){
+
+        dongDangNhap();
+    }
+}
+
+/* LOAD */
+
+hienThiNguoiDung();
+
+</script>
+<!-- CHATBOT -->
+
+<button class="chat-toggle" onclick="toggleChat()">
+💬
+</button>
+
+<div class="chat-container" id="chatContainer">
+
+  <div class="chat-header">
+
+    <h2>🤖 HAIDANG AI</h2>
+
+    <button onclick="toggleChat()" class="close-chat">
+      ×
+    </button>
+
+  </div>
+
+  <div class="chat-messages" id="chatMessages">
+
+    <div class="bot-message">
+
+      Xin chào 👋<br><br>
+
+      Tôi có thể tư vấn:
+      <br><br>
+
+      • Xe MTB<br>
+      • Xe Road<br>
+      • Xe giá rẻ<br>
+      • Xe cao cấp
+
+    </div>
+
+  </div>
+
+  <div class="chat-input-box">
+
+    <input
+      type="text"
+      id="userInput"
+      placeholder="Nhập tin nhắn..."
+      onkeypress="handleKey(event)"
+    >
+
+    <button onclick="sendMessage()">
+      Gửi
+    </button>
+
+  </div>
+
+</div>
+
+<style>
+
+.chat-toggle{
+
+  position:fixed;
+
+  right:25px;
+  bottom:100px;
+
+  width:65px;
+  height:65px;
+
+  border:none;
+  border-radius:50%;
+
+  background:#2563eb;
+
+  color:white;
+
+  font-size:28px;
+
+  cursor:pointer;
+
+  z-index:9999;
+}
+
+.chat-container{
+
+  position:fixed;
+
+  right:25px;
+  bottom:180px;
+
+  width:350px;
+  height:550px;
+
+  background:white;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  box-shadow:0 10px 40px rgba(0,0,0,0.3);
+
+  display:none;
+
+  flex-direction:column;
+
+  z-index:9999;
+}
+
+.chat-header{
+
+  background:#2563eb;
+
+  color:white;
+
+  padding:18px;
+
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+}
+
+.close-chat{
+
+  background:none;
+  border:none;
+
+  color:white;
+
+  font-size:28px;
+
+  cursor:pointer;
+}
+
+.chat-messages{
+
+  flex:1;
+
+  padding:15px;
+
+  overflow-y:auto;
+
+  background:#f5f7fb;
+}
+
+.bot-message,
+.user-message{
+
+  padding:12px;
+
+  border-radius:12px;
+
+  margin-bottom:12px;
+
+  max-width:80%;
+}
+
+.bot-message{
+
+  background:white;
+}
+
+.user-message{
+
+  background:#2563eb;
+
+  color:white;
+
+  margin-left:auto;
+}
+
+.chat-input-box{
+
+  display:flex;
+
+  padding:15px;
+
+  gap:10px;
+
+  border-top:1px solid #ddd;
+}
+
+.chat-input-box input{
+
+  flex:1;
+
+  padding:12px;
+
+  border:1px solid #ccc;
+
+  border-radius:10px;
+
+  outline:none;
+}
+
+.chat-input-box button{
+
+  padding:12px 16px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#2563eb;
+
+  color:white;
+
+  cursor:pointer;
+}
+
+</style>
+
+<script>
+
+function toggleChat(){
+
+  let chat =
+  document.getElementById("chatContainer");
+
+  if(chat.style.display === "flex"){
+
+    chat.style.display = "none";
+  }
+
+  else{
+
+    chat.style.display = "flex";
+  }
+}
+
+function handleKey(e){
+
+  if(e.key === "Enter"){
+
+    sendMessage();
+  }
+}
+
+function addMessage(text,type){
+
+  let div =
+  document.createElement("div");
+
+  if(type === "user"){
+
+    div.className = "user-message";
+  }
+
+  else{
+
+    div.className = "bot-message";
+  }
+
+  div.innerHTML = text;
+
+  document.getElementById("chatMessages")
+  .appendChild(div);
+
+  let chat =
+  document.getElementById("chatMessages");
+
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function sendMessage(){
+
+  let input =
+  document.getElementById("userInput");
+
+  let msg =
+  input.value.trim();
+
+  if(msg === "") return;
+
+  addMessage(msg,"user");
+
+  input.value = "";
+
+  setTimeout(()=>{
+
+    let rep =
+    aiReply(msg);
+
+    addMessage(rep,"bot");
+
+  },700);
+}
+
+function aiReply(msg){
+
+  msg = msg.toLowerCase();
+
+  if(msg.includes("mtb")){
+
+    return `
+    🚵 GIANT Talon MTB
+    <br><br>
+
+    Giá: 5.000.000đ
+    `;
+  }
+
+  if(msg.includes("road")){
+
+    return `
+    🚴 Road Makelen R500
+    <br><br>
+
+    Giá: 12.500.000đ
+    `;
+  }
+
+  if(msg.includes("giá rẻ")){
+
+    return `
+    💰 Galaxy ML200
+    <br><br>
+
+    Giá: 4.200.000đ
+    `;
+  }
+
+  if(msg.includes("cao cấp")){
+
+    return `
+    🔥 Magicbros Shadow
+    <br><br>
+
+    Giá: 14.900.000đ
+    `;
+  }
+
+  return `
+  🤖 Tôi có thể tư vấn:
+  <br><br>
+
+  • MTB
+  <br>
+  • Road
+  <br>
+  • Xe giá rẻ
+  <br>
+  • Xe cao cấp
+  `;
+}
+
+</script>
+</body>
+</html>
